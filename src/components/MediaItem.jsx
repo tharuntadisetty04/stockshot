@@ -28,8 +28,8 @@ const MediaItem = ({ item, onDownload, onCopy }) => {
                         </div>
 
                         <div className='mb-4 flex gap-4 justify-center'>
-                            <button onClick={() => onCopy(item.url)} className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-semibold rounded-md'>Copy URL</button>
-                            <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-semibold rounded-md' onClick={() => onDownload(item.url)}>Download</button>
+                            <button onClick={() => onCopy(item.url)} className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-medium rounded-md'>Copy URL</button>
+                            <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-medium rounded-md' onClick={() => onDownload(item.url)}>Download</button>
                         </div>
                     </>
                 ) : (
@@ -58,8 +58,8 @@ const MediaItem = ({ item, onDownload, onCopy }) => {
                         </div>
 
                         <div className='mb-4 flex gap-4 justify-center'>
-                            <button onClick={() => onCopy(item.url)} className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-semibold rounded-md'>Copy URL</button>
-                            <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-semibold rounded-md' onClick={() => onDownload(item.url)}>Download</button>
+                            <button onClick={() => onCopy(item.url)} className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-medium rounded-md'>Copy URL</button>
+                            <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-medium rounded-md' onClick={() => onDownload(item.url)}>Download</button>
                         </div>
                     </>
                 )}

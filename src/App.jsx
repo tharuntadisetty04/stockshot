@@ -42,7 +42,7 @@ const App = () => {
 
         // Fetch videos from Pixabay
         const pixabayVideoResponse = await axios.get(
-          `https://pixabay.com/api/videos/?key=${import.meta.env.VITE_PIXABAY_API_KEY}&q=${searchQuery}&per_page=${itemsPerPage}&pretty=true`
+          `https://pixabay.com/api/videos/?key=${import.meta.env.VITE_PIXABAY_API_KEY}&q=${searchQuery}&per_page=${itemsPerPage}&pretty=true&page=${page}`
         );
 
         const pixabayVideos = pixabayVideoResponse.data.hits.map(hit => ({
@@ -95,13 +95,15 @@ const App = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-center text-4xl font-semibold py-4 text-purple-500">StockShot - Stock Images & Video Gallery</h1>
+    <div className="container mx-auto font-poppins">
+      <h1 className="text-center sm:text-4xl text-xl font-semibold py-4 text-purple-500">StockShot - Stock Images & Videos</h1>
 
-      <div className='flex justify-center items-center text-center gap-4 mt-2 mb-4'>
+      <div className='flex justify-center items-center flex-col sm:flex-row text-center gap-4 md:mt-1 mb-4'>
         <SearchBar value={searchQuery} onChange={handleSearch} />
-        <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-semibold rounded-md' onClick={() => handlePageChange(page - 3)} disabled={page === 1}>Images</button>
-        <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-semibold rounded-md' onClick={() => handlePageChange(page + 3)} disabled={page === totalPages}>Videos</button>
+        <div className="flex justify-center items-center gap-2">
+          <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-medium rounded-md' onClick={() => setPage(1)} disabled={page === 1}>Images</button>
+          <button className='bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 font-medium rounded-md' onClick={() => setPage(4)}>Videos</button>
+        </div>
       </div>
 
       {!isLoading && media.length === 0 && <ErrorDisplay message="No Images Found" />}
@@ -109,7 +111,7 @@ const App = () => {
       <div className='flex justify-center items-center flex-col'>
         {!isLoading && (
           <>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid sm:grid-cols-3 sm:gap-4 '>
               {media.map(item => (
                 <MediaItem
                   key={item.id}
@@ -123,7 +125,7 @@ const App = () => {
           </>
         )}
         {!isLoading && (
-          <Pagination onPageChange={handlePageChange} currentPage={page} totalPages={totalPages} />
+          <Pagination setPage={setPage} currentPage={page} totalPages={totalPages} />
         )}
       </div>
     </div>
